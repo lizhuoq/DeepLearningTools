@@ -59,9 +59,9 @@ class VisionTransformer(Module):
         x shape: batch_size, channels, height, width
         """
         x = self.patch_emb(x)
-        x = self.pos_emb(x)
         cls_token_emb = self.cls_token_emb.expand(-1, x.shape[1], -1)
         x = torch.cat([cls_token_emb, x])
+        x = self.pos_emb(x)
         for layer in self.transformer_layers:
             x = layer(x=x, mask=None)
         x = x[0]
