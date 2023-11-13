@@ -1,5 +1,7 @@
 from package import *
 
+from sklearn.metrics import mean_squared_error, r2_score
+
 
 def custom_pearson(x, y):
     x_mean = x.mean()
@@ -15,3 +17,13 @@ def numpy_pearson(x, y):
     return np.corrcoef(x, y)[0][1]
 
 
+def rmse(true, pred):
+    return mean_squared_error(true, pred, squared=False)
+
+
+def ubrmse(true, pred):
+    return mean_squared_error(true - true.mean(), pred - pred.mean(), squared=False)
+
+
+def r2(true, pred):
+    return r2_score(true, pred)
