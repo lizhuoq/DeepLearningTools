@@ -81,3 +81,8 @@ def plot_train_test_dis(df_train, df_test, numeric_columns):
                  y=0.89, x=0.57)
     plt.tight_layout()
     plt.show()
+
+
+def load_array(data_arrays, batch_size, is_train):
+    dataset = TensorDataset(*data_arrays)
+    return DataLoader(dataset, batch_size, shuffle=is_train)

@@ -7,6 +7,7 @@ from flaml import AutoML
 import matplotlib.pyplot as plt
 from tqdm import tqdm
 import seaborn as sns
+from torch.utils.data import TensorDataset, DataLoader
 
 from typing import List
 import doctest
