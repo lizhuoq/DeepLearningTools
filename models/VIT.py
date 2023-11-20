@@ -1,5 +1,3 @@
-import torch
-
 from package import *
 
 from labml_nn.transformers import TransformerLayer
