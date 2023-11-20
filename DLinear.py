@@ -33,7 +33,6 @@ class series_decomp(nn.Module):
 
     def forward(self, x):
         moving_mean = self.moving_avg(x)
-        print(moving_mean.shape)
         res = x - moving_mean
         return res, moving_mean
 
@@ -43,16 +42,14 @@ class Model(nn.Module):
     Decomposition-Linear
     """
 
-    def __init__(self, configs):
+    def __init__(self, seq_len, tgt_len, kernel_size):
         super(Model, self).__init__()
-        self.seq_len = configs.seq_len
-        self.pred_len = configs.pred_len
+        self.seq_len = seq_len
+        self.pred_len = tgt_len
 
         # Decompsition Kernel Size
-        kernel_size = 25
+        kernel_size = kernel_size
         self.decompsition = series_decomp(kernel_size)
-        self.individual = configs.individual
-        self.channels = configs.enc_in
 
         self.Linear_Seasonal = nn.Linear(self.seq_len, self.pred_len)
         self.Linear_Trend = nn.Linear(self.seq_len, self.pred_len)
